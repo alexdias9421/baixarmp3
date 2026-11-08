@@ -129,7 +129,8 @@ if [ "$TIPO_OPCAO" = "1" ]; then
 
 elif [ "$TIPO_OPCAO" = "2" ]; then
     escolher_bitrate_audio
-    yt-dlp -x --audio-format mp3 --audio-quality "$BIT" --embed-metadata -o "$DESTINO/%(title)s.%(ext)s" "$ALVO"
+    # Usar --progress para mostrar apenas a barra/porcentagem, nome da música e tipo do arquivo
+    yt-dlp -x --audio-format mp3 --audio-quality "$BIT" --embed-metadata --progress --newline --progress-template 'Baixando: %(info.title)s [%(ext)s] - %(progress._percent_str)s' -o "$DESTINO/%(title)s.%(ext)s" "$ALVO"
 
 else
     echo "Opção inválida."
