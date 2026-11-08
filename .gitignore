@@ -1,0 +1,12 @@
+.bash_history
+.cache/
+.claude.json
+.claude/
+.gitconfig
+.local/
+.npm/
+.ssh/
+.termux/
+claude-code-termux/
+freellmapi/
+storage/
