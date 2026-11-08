@@ -75,6 +75,8 @@ baixarmp3 "https://youtube.com/watch?v=SEU_VIDEO"
 | 2 | AVI | `.avi` |
 | 3 | FLV | `.flv` |
 
+> **Nota:** A opção `3` (FLV) está disponível, mas o **MP4** (opção `1`) é o mais recomendado por ter melhor compatibilidade e menor tamanho de arquivo.
+
 ### MP3 (Áudio)
 | Bitrate | Qualidade | Opção |
 |---|---|---|
@@ -115,6 +117,8 @@ rm -rf ~/.config/baixarmp3
 
 ## 🎨 Interface Colorida (ASCII Art)
 
+> **Sobre o `figlet`:** O script utiliza o `figlet` para gerar o ASCII art grande e bonito na inicialização. Se não estiver instalado, o script continua funcionando normalmente com o texto padrão.
+
 ```
 ============================================
     BAIXAR MP3 & VÍDEO - TERMUX          
@@ -123,7 +127,8 @@ rm -rf ~/.config/baixarmp3
 O que você deseja baixar?
   1) Vídeo (MP4, AVI ou FLV)
   2) MP3 (áudio)
-Opção [1-2]: 
+  3) Sair
+Opção [1-3]: 
 ```
 
 Com `figlet` instalado, a mensagem de boas-vindas aparece em **ASCII art colorido**!
