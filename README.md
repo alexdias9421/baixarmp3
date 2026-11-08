@@ -142,6 +142,20 @@ Para que tudo funcione perfeitamente, dê estas permissões:
 
 ---
 
+## 🚾 Como Sair / How to Exit
+
+### No terminal Python:
+
+Pressione **`Ctrl + C`** para interromper a execução imediatamente.
+
+Ou digite **`sair`** ou **`exit`** para encerrar o programa limposamente.
+
+### No shell (bash):
+
+Pressione **`Ctrl + C`** ou **`Ctrl + D`** (EOF) para sair do script.
+
+---
+
 ## 🐛 Solução de Problemas
 
 | Problema | Solução |
