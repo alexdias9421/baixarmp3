@@ -1,68 +1,187 @@
-# 🚀 BaixarMP3 - Termux YouTube Downloader (V3)
+# 🎧 BaixarMP3 - Termux YouTube Downloader (V3)
 
-![Termux](https://img.shields.io/badge/Platform-Termux-orange.svg)
-![Python](https://img.shields.io/badge/Python-3.x-blue.svg)
-![yt-dlp](https://img.shields.io/badge/Tool-yt--dlp-red.svg)
-![License](https://img.shields.io/badge/License-MIT-green.svg)
-
-Um script potente e interativo para Termux que facilita o download de vídeos e áudios do YouTube. Ele automatiza a instalação das dependências, memoriza suas preferências de qualidade e organiza seus downloads automaticamente na pasta do sistema.
-
-## ✨ Novidades da V3
-
-- **🧠 Memória de Preferências**: O script agora lembra a última qualidade de vídeo, formato e bitrate de áudio que você escolheu.
-- **📁 Organização Inteligente**: Detecta automaticamente a pasta de downloads do seu Android (`/sdcard/Download/baixarmp3`).
-- **🎬 Menu Interativo**: Escolha entre Vídeo ou MP3 logo no início.
-- **📊 Qualidades Variadas**:
-  - **Vídeo**: 480p, 720p (HD), 1080p (Full HD).
-  - **Formatos**: MP4, AVI, FLV.
-  - **Áudio**: MP3 em 128k, 192k, 256k ou 320k (Alta Fidelidade).
-
-## 🛠️ Instalação Rápida
-
-1. Abra o seu Termux.
-2. Baixe o script de instalação (ou clone este repositório):
-   ```bash
-   bash baixarmp3.sh
-   ```
-3. O instalador cuidará de tudo: `ffmpeg`, `python` e `yt-dlp`.
-
-## 🚀 Como Usar
-
-Após a instalação, você pode usar o comando em qualquer lugar do terminal:
-
-```bash
-# Simplesmente digite:
-baixarmp3
-```
-
-Ou passe a URL diretamente:
-```bash
-baixarmp3 "https://www.youtube.com/watch?v=XXXXXXXX"
-```
-
-### O que acontece quando você executa?
-1. **Pergunta o Alvo**: Se não passou a URL, ele pede o link ou termo de busca.
-2. **Tipo de Mídia**: Pergunta se você quer Vídeo ou Música.
-3. **Qualidade**: Sugere a última qualidade usada (basta apertar `Enter`) ou permite escolher uma nova.
-4. **Download**: Baixa e converte usando o `ffmpeg`.
-5. **Sucesso**: Avisa o caminho exato onde o arquivo foi salvo.
-
-## ⚙️ Configurações
-
-As preferências são salvas em:
-`~/.config/baixarmp3/prefs.conf`
-
-Você pode apagar essa pasta se quiser resetar as configurações padrão.
-
-## 📋 Requisitos
-
-- Termux (Android)
-- Acesso ao armazenamento (`termux-setup-storage`)
-- Conexão com internet
-
-## 🤝 Contribuição
-
-Sinta-se à vontade para abrir Issues ou enviar Pull Requests para melhorar o script!
+**🎨 Script visual e completo para baixar vídeos e músicas do YouTube no Termux!**
 
 ---
-*Gerado por Claude Code no Termux*
+
+## 📱 Pre-requisitos (Instale no Termux)
+
+```bash
+# 1. Atualize o Termux
+pkg update && pkg upgrade -y
+
+# 2. Instale as ferramentas de texto e cores
+pkg install -y figlet toilet
+
+# 3. Configurar armazenamento do Android
+termux-setup-storage
+
+# 4. Baixar e clonar o script
+git clone https://github.com/alexdias9421/baixarmp3.git
+cd baixarmp3
+```
+
+---
+
+## 🔧 Instalação Automática (Recomendado)
+
+Execute o instalador com todos os permissões necessárias:
+
+```bash
+bash baixarmp3.sh
+```
+
+> ⏳ **O que o instalador faz?**  
+Ele instala automaticamente:
+> - `ffmpeg` (codificação de áudio/vídeo)  
+> - `python`  
+> - `yt-dlp` (baixador de vídeos)  
+> - `mutagen` (embed de metadados)
+
+---
+
+## 🏃 Como Usar
+
+### Opção 1 - Interativo (Recomendado)
+```bash
+baixarmp3
+```
+Será perguntado:
+1. **Vídeo ou MP3** → `1` ou `2`  
+2. **Qualidade** → `480p`, `720p`, `1080p`  
+3. **Formato** (vídeo) → `mp4`, `avi`, `flv`  
+4. **Bitrate** (MP3) → `128k`, `192k`, `256k`, `320k`
+
+### Opção 2 - Passe a URL diretamente
+```bash
+baixarmp3 "https://youtube.com/watch?v=SEU_VIDEO"
+```
+
+---
+
+## 📐 Qualidades e Formatos Suportados
+
+### Vídeos
+| Qualidade | Resolução | Opção |
+|---|---|---|
+| 480p | 854×480 | Escolha `1` |
+| 720p | 1280×720 | Escolha `2` (HD) |
+| 1080p | 1920×1080 | Escolha `3` (Full HD) |
+
+### Formatos de Vídeo
+| Código | Formato | Extensão |
+|---|---|---|
+| 1 | MP4 | `.mp4` (recomendado) |
+| 2 | AVI | `.avi` |
+| 3 | FLV | `.flv` |
+
+### MP3 (Áudio)
+| Bitrate | Qualidade | Opção |
+|---|---|---|
+| 128k | Padrão | Escolha `1` |
+| 192k | Alto | Escolha `2` |
+| 256k | Médio-Alto | Escolha `3` |
+| 320k | Alta Fidelidade (CD) | Escolha `4` |
+
+---
+
+## 📁 Onde os Arquivos São Salvos
+
+**Pasta padrão:** `~/Download/baixarmp3`
+
+O script detecta automaticamente:
+1. `/sdcard/Download/` ✓
+2. `~/storage/downloads/` ✓  
+3. `~/Downloads/` ✓
+
+---
+
+## 💾 Persistência de Preferências
+
+> O script **salva** suas últimas escolhas!
+
+- **Salvo em:** `~/.config/baixarmp3/prefs.conf`
+- **Próxima vez**, pressione `Enter` para usar o mesmo:
+  - Qualidade do vídeo
+  - Formato escolhido
+  - Bitrate do MP3
+
+Para **resetar** as preferências:
+```bash
+rm -rf ~/.config/baixarmp3
+```
+
+---
+
+## 🎨 Interface Colorida (ASCII Art)
+
+```
+============================================
+    BAIXAR MP3 & VÍDEO - TERMUX          
+============================================
+
+O que você deseja baixar?
+  1) Vídeo (MP4, AVI ou FLV)
+  2) MP3 (áudio)
+Opção [1-2]: 
+```
+
+Com `figlet` instalado, a mensagem de boas-vindas aparece em **ASCII art colorido**!
+
+---
+
+## 🛡️ Permissões Concedidas
+
+Para que tudo funcione perfeitamente, dê estas permissões:
+
+| Permissão | Para quê |
+|---|---|
+| Armazenamento (`termux-setup-storage`) | Salvar arquivos |
+| Python | Executar `yt-dlp` e `mutagen` |
+| `ffmpeg` | Transcodificar áudio/vídeo |
+
+---
+
+## 🐛 Solução de Problemas
+
+| Problema | Solução |
+|---|---|
+| **Comando não encontrado** | Execute `bash baixarmp3.sh` novamente |
+| **Erro de download** | Verifique a URL no navegador do Android |
+| **Não salva arquivos** | Rode `termux-setup-storage` no Termux |
+| **Formato errado** | Verifique preferências em `~/.config/baixarmp3/prefs.conf` |
+
+---
+
+## 📝 Estrutura do Projeto
+
+```
+baixarmp3/
+├── baixarmp3.sh      # Script instalador
+├── README.md         # Este arquivo
+└── .gitignore        # Arquivos a ignorar
+```
+
+---
+
+## 🤝 Contribuições
+
+Aberto para issues e pull requests!  
+Use a issue tracker do GitHub para bugs ou sugestões.
+
+---
+
+## 📜 Licença
+
+MIT License - Livre para uso e modificação.
+
+---
+
+## 🚀 Quick Links
+
+- **GitHub**: <https://github.com/alexdias9421/baixarmp3>
+- **Repositório Termux**: Instale no Android
+
+---
+
+*Desenvolvido com ❤️ no Termux usando o assistente Claude Code*
